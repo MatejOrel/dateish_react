@@ -1,39 +1,46 @@
-import React, {useState, useEffect} from 'react';
-import database from './firebase';
+import React, { useState, useEffect } from 'react';
+import { database, firebaseApp } from './firebase';
 import TinderCard from "react-tinder-card";
 import './TinderCards.css';
 
 function TinderCards() {
-const [people, setPeople] = useState([]);
+    const [users, setUsers] = useState([]);
 
-useEffect(() => {
+    useEffect(() => {
 
-    const unsubscribe = database
-    .collection('people')
-    .onSnapshot((snapshot) => 
-        setPeople(snapshot.docs.map(doc => doc.data()))
-    );
+        firebaseApp.auth().onAuthStateChanged(async (user) => {
+            if (user) {
+                fetch('http://127.0.0.1:8000/api/findUsers?uID=' + user.uid, {
+                    method: 'GET'
 
-    return () => {
-        unsubscribe();
-    };
-}, []);
+                })
+                    .then((resp) => resp.json())
+                    .then((users) => {
+                        const arr = [];
+                        Object.keys(users).forEach(uid => {
+                            arr.push({ uid, ...users[uid] })
+                        })
+                        console.log(arr);
+                        setUsers(arr);
+                    })
+                    .catch((error) => console.log("failed", error.message));
+            }
+        })
 
-// setPeople([...people, 'sonny','quazi'])
-
+    }, []);
 
 
     return (
         <div>
             <div className="tinderCards__cardContainer">
-                {people.map((person) => (
+                {users.map((person) => (
                     <TinderCard
                         className="swipe"
                         key={person.name}
-                        preventSwipe={["up","down"]}
+                        preventSwipe={["up", "down"]}
                     >
                         <div
-                            style={{ backgroundImage: `url(${person.url})` }}
+                            style={{ backgroundImage: `url(${person.profileImageUrl})` }}
                             className="card"
                         >
                             <h3>{person.name}</h3>

@@ -1,16 +1,17 @@
 import firebase from "firebase";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDpad5gjpgQ5DeMyN6J_C77K4E-bRR3548",
-    authDomain: "dateish-clone.firebaseapp.com",
-    projectId: "dateish-clone",
-    storageBucket: "dateish-clone.appspot.com",
-    messagingSenderId: "902900527017",
-    appId: "1:902900527017:web:dc6591f0f4290c49b91eb8",
-    measurementId: "G-BCYP5EEE93"
-  };
+  apiKey: "AIzaSyDpvwxb1lV668c_j0NFD_Fk_fhc_rGWM6g",
+  authDomain: "dateish-5d381.firebaseapp.com",
+  databaseURL: "https://dateish-5d381.firebaseio.com",
+  projectId: "dateish-5d381",
+  storageBucket: "dateish-5d381.appspot.com",
+  messagingSenderId: "489283104479",
+  appId: "1:489283104479:web:c779f5778b34533c16436a",
+  measurementId: "G-NCL6JW5FWE"
+};
 
-  const firebaseApp = firebase.initializeApp(firebaseConfig);
-  const database = firebaseApp.firestore();
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const database = firebaseApp.firestore();
 
-  export default database;
+export { database, firebaseApp };
