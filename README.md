@@ -1,71 +1,23 @@
-# Getting Started with Create React App
+# Dateish_webapp
+Naslov projekta: Dateish:
+Avtorja:
+    63190207, Matej Orel
+    63190204, Anže Oblak
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Odločila sva se narediti online dating aplikacijo, za katero sva kot inspiracijo vzela že obstoječe platforme, kot so Tinder, Grindr in Bumble. Za to idejo sva se odločila zaradi trenutne situacije v svetu, ko se spopadamo s pandemijo in fizični stik med ljudmi ni mogoč. Klubi in bari so zaprti, in edini način za spoznavanje novih ljudi ter ustvarjanje novih stikov ostaja splet.
 
-## Available Scripts
+Predvidevava, da bo najina aplikacija vsebovala naslednje funkcionalnosti:
 
-In the project directory, you can run:
+- Ustvarjanje svojega profila, na katerem bo imel uporabnik lahko več slik, opis ter druge podatke, ki so lahko zanimivi za druge ljudi.
+- Prikaz drugih uporabnikov med katerimi se lahko posameznik odloča ali so mu všeč ali ne.
+- Za iskanje drugih uporabnikov, si lahko posameznik nastavi spol, ki ga želi iskati, razdaljo med njim in drugimi uporabniki, ki se mu bodo prikazali ter omeji starostno iskanje.
+- Ob prikazu drugih uporabnikov, se bo posameznik lahko odločil med naslednjimi možnostmi:
+      Všeček -> v primeru, da se oba uporabnika všečkata, bo temu sledilo njuno ujemanje, kar pomeni, da si lahko začneta pošiljati privatna sporočila.
+      ''Dislike'' -> pomeni, da posamezniku oseba ni pritegnila posebnega navdušenja. Do privatnih sporočil tako ne bo prišlo.
+      Super všeček -> pri super všečku posameznik vidi, da ga je druga oseba super všečkala, s čimer lahko izraziš večje zanimanje. Super všeček lahko uporabiš samo nekajkrat na dan.
+- Privatna sporočila, ko se uporabnika ujameta z všečkoma.
+ 
 
-### `npm start`
+Predvidene entitete:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-"# dateish_react" 
+Uporabniki (moški/ženske) so med seboj vsi enakovredni, le te pa imajo v podatkovni bazi shranjen svoj opis, telefonsko številko v kolikor jo želijo deliti, osebne podatke ter fotografije.
