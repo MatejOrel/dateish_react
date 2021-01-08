@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Slider from "@material-ui/core/Slider";
 import Button from "react-bootstrap/Button";
 import Grid from "@material-ui/core/Grid";
-import Form from "react-bootstrap/Form";
 import { firebaseApp } from "./firebase";
 import firebase from "@firebase/app";
 import "./Settings.css";
