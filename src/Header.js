@@ -23,6 +23,21 @@ function Header({ backButton }) {
           </IconButton>
         </Link>
       )}
+
+      <Link to="/chat">
+        <IconButton>
+          <ForumIcon className="header__icon" fontSize="large" />
+        </IconButton>
+      </Link>
+
+      <Link to="/">
+        <img
+          className="header__logo"
+          src="https://1000logos.net/wp-content/uploads/2018/07/tinder-logo.png"
+          alt="tinder logo"
+        />
+      </Link>
+
       <Link to="/">
         <IconButton
           onClick={() => {
@@ -38,18 +53,6 @@ function Header({ backButton }) {
           }}
         >
           <ExitToAppIcon className="header__icon" fontSize="large" />
-        </IconButton>
-      </Link>
-      <Link to="/">
-        <img
-          className="header__logo"
-          src="https://1000logos.net/wp-content/uploads/2018/07/tinder-logo.png"
-          alt="tinder logo"
-        />
-      </Link>
-      <Link to="/chat">
-        <IconButton>
-          <ForumIcon className="header__icon" fontSize="large" />
         </IconButton>
       </Link>
     </div>
