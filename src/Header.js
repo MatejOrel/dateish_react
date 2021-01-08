@@ -11,7 +11,7 @@ import { firebaseApp } from "./firebase";
 function Header({ backButton }) {
   const history = useHistory();
   return (
-    <div className="header">
+    <div className="headerr">
       {backButton ? (
         <IconButton onClick={() => history.replace(backButton)}>
           <ArrowBackIosIcon fontSize="large" className="header__icon" />
