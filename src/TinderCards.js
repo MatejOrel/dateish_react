@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { database, firebaseApp } from './firebase';
+import { firebaseApp } from './firebase';
 import TinderCard from "react-tinder-card";
 import './TinderCards.css';
 
@@ -10,7 +10,7 @@ function TinderCards() {
 
         firebaseApp.auth().onAuthStateChanged(async (user) => {
             if (user) {
-                fetch('http://127.0.0.1:8000/api/findUsers?uID=' + user.uid, {
+                fetch('https://dateishapi.herokuapp.com/api/findUsers?uID=' + user.uid, {
                     method: 'GET'
 
                 })

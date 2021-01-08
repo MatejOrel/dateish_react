@@ -1,4 +1,4 @@
-.header {
+.headerr {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -9,6 +9,6 @@
     height: 40px;
 }
 
-.header__icon {
+.header__iconn {
     padding: 20px;
 }
