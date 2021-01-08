@@ -5,11 +5,11 @@ import TinderCards from "./TinderCards";
 import SwipeButtons from "./SwipeButtons";
 import Chats from "./Chats";
 import ChatScreen from "./ChatScreen";
-import Register from "./Register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import './App.css';
-import { firebaseApp } from './firebase';
-import { Settings } from './Settings.js';
+import "./App.css";
+import { firebaseApp } from "./firebase";
+import { Settings } from "./Settings.js";
+import Register from "./Register.js";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -43,10 +43,8 @@ function App() {
             <Settings />
           </Route>
 
-          <Route path="/">
-
-            {user ? (<div><Header /><TinderCards /><SwipeButtons /></div>) : (<Login />)}
-
+          <Route path="/register">
+            <Register />
           </Route>
 
           <Route path="/">
@@ -60,6 +58,7 @@ function App() {
               <Login />
             )}
           </Route>
+
         </Switch>
       </Router>
     </div>

@@ -1,16 +1,12 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import { firebaseApp } from "./firebase";
-=======
-import React, { useState, useEffect } from 'react';
-import { firebaseApp } from './firebase';
->>>>>>> c9b0cc6caa705c4f51fa6cc29f2589604d5f3f19
 import TinderCard from "react-tinder-card";
 import "./TinderCards.css";
 import "./Settings.css";
 
 function TinderCards() {
   const [users, setUsers] = useState([]);
+  var nr_of_users = 0;
 
   useEffect(() => {
     firebaseApp.auth().onAuthStateChanged(async (user) => {
@@ -29,11 +25,40 @@ function TinderCards() {
             });
             console.log(arr);
             setUsers(arr);
+            nr_of_users = arr.length
           })
           .catch((error) => console.log("failed", error.message));
       }
     });
   }, []);
+
+  const onSwipe = (direction) => {
+    console.log("You swiped: " + direction);
+    var url = "";
+    if (direction === "left")
+      url = "https://dateishapi.herokuapp.com/api/leftswipe";
+    else if (direction === "right")
+      url = "https://dateishapi.herokuapp.com/api/rightswipe";
+
+      console.log(nr_of_users)
+      console.log(users[nr_of_users].uid)
+
+    /*firebaseApp.auth().onAuthStateChanged(async (user) => {
+      if (user) {
+        fetch(url, {
+          method: "POST",
+          body: JSON.stringify({
+            id: this.uid,
+            uId: user.user.uid,
+          }),
+        })
+          .then(() => {
+            console.log("success");
+          })
+          .catch((error) => console.log("failed", error.message));
+      }
+    });*/
+  };
 
   return (
     <div>
@@ -44,6 +69,7 @@ function TinderCards() {
               className="swipe"
               key={person.name}
               preventSwipe={["up", "down"]}
+              onSwipe={onSwipe}
             >
               <div
                 style={{ backgroundImage: `url(${person.profileImageUrl})` }}
