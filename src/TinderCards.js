@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import { firebaseApp } from "./firebase";
+=======
+import React, { useState, useEffect } from 'react';
+import { firebaseApp } from './firebase';
+>>>>>>> c9b0cc6caa705c4f51fa6cc29f2589604d5f3f19
 import TinderCard from "react-tinder-card";
 import "./TinderCards.css";
 import "./Settings.css";
