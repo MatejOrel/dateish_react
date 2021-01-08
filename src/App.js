@@ -8,6 +8,7 @@ import ChatScreen from './ChatScreen';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './App.css';
 import { firebaseApp } from './firebase';
+import { Settings } from './Settings.js';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -38,6 +39,11 @@ function App() {
           <Route path="/chat">
             <Header backButton="/" />
             <Chats />
+          </Route>
+
+          <Route path="/settings">
+            <Header backButton="/" />
+            <Settings />
           </Route>
 
           <Route path="/">
