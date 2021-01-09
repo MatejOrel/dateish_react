@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Navbar from "react-bootstrap/Navbar";
 import { firebaseApp } from "./firebase";
 import { useFormFields } from "./libs/hooksLib";
 import { Link } from "react-router-dom";
@@ -20,7 +21,11 @@ export default function Register() {
 
   function validateForm() {
     console.log(fields.sex, fields.name, fields.surname, fields.date);
+    const ageDifMs = Date.now() - new Date(fields.date);
+    const ageDate = new Date(ageDifMs);
+    const starost = Math.abs(ageDate.getUTCFullYear() - 1970);
     return (
+      starost >= 18 &&
       fields.email.length > 0 &&
       fields.password.length > 0 &&
       fields.password === fields.confirmPassword
@@ -59,6 +64,9 @@ export default function Register() {
 
   return (
     <div className="Register">
+      <Navbar className="center-navbar" fixed="top" expand="xl" variant="light">
+        <Navbar.Brand>Register</Navbar.Brand>
+      </Navbar>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="name" size="lg">
           <Form.Label>Name</Form.Label>
@@ -114,7 +122,7 @@ export default function Register() {
           />
         </Form.Group>
         <Form.Group controlId="date">
-          <Form.Label>Select Date</Form.Label>
+          <Form.Label>Date Of Birth</Form.Label>
           <Form.Control
             type="date"
             name="dob"

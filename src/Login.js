@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
+import Navbar from "react-bootstrap/Navbar";
 import { firebaseApp } from "./firebase";
 import { Link } from "react-router-dom";
 import "./Login.css";
@@ -31,6 +32,9 @@ export default function Login() {
 
   return (
     <div className="Login">
+      <Navbar className="center-navbar" fixed="top" expand="xl" variant="light">
+        <Navbar.Brand>Login</Navbar.Brand>
+      </Navbar>
       <Form onSubmit={handleSubmit}>
         <Form.Group size="lg" controlId="email">
           <Form.Label>Email</Form.Label>
