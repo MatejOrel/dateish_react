@@ -1,24 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { firebaseApp } from "./firebase";
 import "./Chats.css";
 import Chat from "./Chat";
 
 function Chats() {
-    return (
+  const [matches, setMatches] = useState();
+
+  useEffect(() => {
+    firebaseApp.auth().onAuthStateChanged(async (user) => {
+      if (user) {
+        fetch("https://dateishapi.herokuapp.com/api/matches?uID=" + user.uid, {
+          method: "GET",
+        })
+          .then((resp) => resp.json())
+          .then((users) => {
+            const arr = [];
+            Object.keys(users).forEach((uid) => {
+              arr.push({ uid, ...users[uid] });
+            });
+            console.log(arr);
+            setMatches(arr);
+          })
+          .catch((error) => console.log("failed", error.message));
+      }
+    });
+  }, []);
+
+  return (
+    <div>
+      {matches ? (
         <div className="chats">
+          {matches.map((person) => (
             <Chat
-                name="Mark"
-                message="yo what's up"
-                timestamp="40 seconds ago"
-                profilePic="https://gutta.lv/wp-content/uploads/2015/10/test-img.jpg"
+              name={person.name}
+              profilePic={person.profileImageUrl}
+              chatId={person.chatId}
             />
-            <Chat
-                name="Mark2"
-                message="yo what's up2"
-                timestamp="40 seconds ago2"
-                profilePic="https://gutta.lv/wp-content/uploads/2015/10/test-img.jpg"
-            />
+          ))}
         </div>
-    )
+      ) : (
+        <div className="loading">
+          <p>Loading...</p>
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default Chats
+export default Chats;
