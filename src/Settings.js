@@ -48,20 +48,22 @@ export const Settings = () => {
     });
   }, []);
 
-  const handleSexChange = (event, newValue) => {
-    setSex(newValue);
+  const handleSexChange = (event) => {
+    console.log(event.target.value);
+    setSex(event.target.value);
   };
 
-  const handleNameChange = (event, newValue) => {
-    setName(newValue);
+  const handleNameChange = (event) => {
+    console.log(event.target.value);
+    setName(event.target.value);
   };
 
-  const handlePhoneChange = (event, newValue) => {
-    setPhone(newValue);
+  const handlePhoneChange = (event) => {
+    setPhone(event.target.value);
   };
 
-  const handleBioChange = (event, newValue) => {
-    setBio(newValue);
+  const handleBioChange = (event) => {
+    setBio(event.target.value);
   };
 
   const handleDistanceChange = (event, newValue) => {
@@ -163,48 +165,10 @@ export const Settings = () => {
           <br></br>
           <p>{users.dateOfBirth}</p>
           <p>Show me:</p>
-          {showSex === "Male" ? (
-            <div className="radio-buttons">
-              Men
-              <input
-                id="Male"
-                value="Male"
-                name="gender"
-                type="radio"
-                checked={true}
-                onChange={handleSexChange}
-              />
-              Women
-              <input
-                id="Female"
-                value="Female"
-                name="gender"
-                type="radio"
-                onChange={handleSexChange}
-              />
-            </div>
-          ) : (
-            <div className="radio-buttons">
-              Men
-              <input
-                id="Male"
-                value="Male"
-                name="gender"
-                type="radio"
-                onChange={handleSexChange}
-              />
-              Women
-              <input
-                id="Female"
-                value="Female"
-                name="gender"
-                type="radio"
-                checked={true}
-                onChange={handleSexChange}
-              />
-            </div>
-          )}
-
+          <div>
+            <input type="radio" value="Male" name="gender" checked={showSex === "Male"} onChange={handleSexChange} /> Male
+            <input type="radio" value="Female" name="gender" checked={showSex === "Female"} onChange={handleSexChange} /> Female
+          </div>
           <p>
             Show distance: <b>{distance} km</b>
           </p>
