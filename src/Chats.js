@@ -35,6 +35,7 @@ function Chats() {
               name={person.name}
               profilePic={person.profileImageUrl}
               chatId={person.chatId}
+              key={person.chatId}
             />
           ))}
         </div>

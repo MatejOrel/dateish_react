@@ -28,7 +28,7 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/chat/:person">
+          <Route path="/chat/chatId=:chatId">
             <Header backButton="/chat" />
             <ChatScreen />
           </Route>
