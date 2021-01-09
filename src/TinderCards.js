@@ -6,7 +6,6 @@ import "./Settings.css";
 
 function TinderCards() {
   const [users, setUsers] = useState([]);
-  var nr_of_users = 0;
 
   useEffect(() => {
     firebaseApp.auth().onAuthStateChanged(async (user) => {
@@ -25,14 +24,13 @@ function TinderCards() {
             });
             console.log(arr);
             setUsers(arr);
-            nr_of_users = arr.length
           })
           .catch((error) => console.log("failed", error.message));
       }
     });
   }, []);
 
-  const onSwipe = (direction) => {
+  const onSwipe = (swipeuid) => (direction) => {
     console.log("You swiped: " + direction);
     var url = "";
     if (direction === "left")
@@ -40,24 +38,29 @@ function TinderCards() {
     else if (direction === "right")
       url = "https://dateishapi.herokuapp.com/api/rightswipe";
 
-      console.log(nr_of_users)
-      console.log(users[nr_of_users].uid)
+    //console.log(users.uid)
 
-    /*firebaseApp.auth().onAuthStateChanged(async (user) => {
+    firebaseApp.auth().onAuthStateChanged(async (user) => {
       if (user) {
-        fetch(url, {
-          method: "POST",
-          body: JSON.stringify({
-            id: this.uid,
-            uId: user.user.uid,
-          }),
-        })
-          .then(() => {
-            console.log("success");
+        if (swipeuid !== user.uid) {
+          fetch(url, {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id: swipeuid,
+              uId: user.uid,
+            }),
           })
-          .catch((error) => console.log("failed", error.message));
+            .then(() => {
+              console.log("success");
+            })
+            .catch((error) => console.log("failed", error.message));
+        }
       }
-    });*/
+    });
   };
 
   return (
@@ -69,7 +72,7 @@ function TinderCards() {
               className="swipe"
               key={person.name}
               preventSwipe={["up", "down"]}
-              onSwipe={onSwipe}
+              onSwipe={onSwipe(person.uid)}
             >
               <div
                 style={{ backgroundImage: `url(${person.profileImageUrl})` }}
