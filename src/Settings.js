@@ -136,73 +136,118 @@ export const Settings = () => {
     <div>
       {users ? (
         <div>
-          <img src={image} id="profile-pic" alt="not found"></img>
-          <input
-            type="file"
-            onChange={onImageChange}
-            className="filetype"
-            id="group_image"
-          />
-          <br></br>
-          <input
-            type="text"
-            defaultValue={name}
-            onChange={handleNameChange}
-          ></input>
-          <br></br>
-          <input
-            type="text"
-            placeholder="Phone"
-            defaultValue={phone}
-            onChange={handlePhoneChange}
-          ></input>
-          <br></br>
-          <input
-            type="textarea"
-            defaultValue={bio}
-            onChange={handleBioChange}
-          ></input>
-          <br></br>
-          <p>{users.dateOfBirth}</p>
-          <p>Show me:</p>
-          <div>
-            <input type="radio" value="Male" name="gender" checked={showSex === "Male"} onChange={handleSexChange} /> Male
-            <input type="radio" value="Female" name="gender" checked={showSex === "Female"} onChange={handleSexChange} /> Female
+          <div className="container">
+            <div className="avatar-preview">
+              <div>
+                <img
+                  className="img"
+                  src={image}
+                  id="profile-pic"
+                  alt="not found"
+                />
+              </div>
+            </div>
           </div>
-          <p>
-            Show distance: <b>{distance} km</b>
-          </p>
-          <div>
-            <Grid>
-              <Slider
-                value={distance}
-                max={142}
-                onChange={handleDistanceChange}
-                aria-labelledby="continuous-slider"
-              />
-            </Grid>
+          <div className="info">
+            <input
+              type="file"
+              onChange={onImageChange}
+              className="filetype"
+              id="group_image"
+            />
+            <br></br>
+            <br></br>
+            <label for="name">Your Name:</label>
+            <br></br>
+            <input
+              id="name"
+              placeholder="Enter your name..."
+              type="text"
+              defaultValue={name}
+              onChange={handleNameChange}
+            ></input>
+            <br></br>
+            <label for="name">Your Number:</label>
+            <br></br>
+            <input
+              type="text"
+              placeholder="Enter your number..."
+              defaultValue={phone}
+              onChange={handlePhoneChange}
+            ></input>
+            <br></br>
+            <label for="bio">Your Bio:</label>
+            <br></br>
+            <input
+              id="bio"
+              placeholder="Type your bio here..."
+              type="textarea"
+              defaultValue={bio}
+              onChange={handleBioChange}
+            ></input>
+            <br></br>
+            <br></br>
+            <label for="date">Your date of birth:</label>
+            <br></br>
+            <p>{users.dateOfBirth}</p>
+            <label for="showSex">Show me:</label>
+            <br></br>
+            <input
+              id="showSex"
+              type="radio"
+              value="Male"
+              name="gender"
+              checked={showSex === "Male"}
+              onChange={handleSexChange}
+            />{" "}
+            Male
+            <br></br>
+            <input
+              id="showSex"
+              type="radio"
+              value="Female"
+              name="gender"
+              checked={showSex === "Female"}
+              onChange={handleSexChange}
+            />{" "}
+            Female
           </div>
-          <p>
-            Show age:{" "}
-            <b>
-              {age[0]} - {age[1]}
-            </b>
-          </p>
-          <div>
-            <Grid>
-              <Slider
-                value={age}
-                min={18}
-                max={100}
-                onChange={handleAgeChange}
-                valueLabelDisplay="auto"
-                aria-labelledby="range-slider"
-              />
-            </Grid>
+          <div className="sliderji">
+            <p>
+              Show distance: <b>{distance} km</b>
+            </p>
+            <div>
+              <Grid>
+                <Slider
+                  value={distance}
+                  max={142}
+                  onChange={handleDistanceChange}
+                  aria-labelledby="continuous-slider"
+                />
+              </Grid>
+            </div>
+            <p>
+              Show age:{" "}
+              <b>
+                {age[0]} - {age[1]}
+              </b>
+            </p>
+            <div>
+              <Grid>
+                <Slider
+                  value={age}
+                  min={18}
+                  max={100}
+                  onChange={handleAgeChange}
+                  valueLabelDisplay="auto"
+                  aria-labelledby="range-slider"
+                />
+              </Grid>
+            </div>
+            <Button block size="lg" type="submit" onClick={submit}>
+              Confirm
+            </Button>
           </div>
-          <Button block size="lg" type="submit" onClick={submit}>
-            Confirm
-          </Button>
         </div>
       ) : (
         <div className="loading">
