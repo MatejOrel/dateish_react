@@ -7,6 +7,7 @@ import firebase from "@firebase/app";
 import "./Settings.css";
 
 export const Settings = () => {
+  const [uid, setUid] = useState();
   const [users, setUsers] = useState();
   const [name, setName] = useState();
   const [phone, setPhone] = useState();
@@ -32,6 +33,7 @@ export const Settings = () => {
               arr[attr] = data[attr];
               //console.log(attr, data[attr]);
             });
+            setUid(user.uid);
             setName(arr.name);
             setPhone(arr.phone);
             setBio(arr.bio);
@@ -48,7 +50,6 @@ export const Settings = () => {
 
   const handleSexChange = (event, newValue) => {
     setSex(newValue);
-    
   };
 
   const handleNameChange = (event, newValue) => {
@@ -72,8 +73,29 @@ export const Settings = () => {
   };
 
   const submit = (event) => {
-    
-  }
+    fetch("https://dateishapi.herokuapp.com/api/saveData", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        uId: uid,
+        name: name,
+        phone: phone,
+        bio: bio,
+        dateOfBirth: users.dateOfBirth,
+        showSex: showSex,
+        minAge: age[0],
+        maxAge: age[1],
+        distance: distance,
+      }),
+    })
+      .then(() => {
+        console.log("success");
+      })
+      .catch((error) => console.log("failed", error.message));
+  };
 
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
