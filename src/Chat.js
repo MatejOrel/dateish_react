@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function Chat({ chatId, name, profilePic }) {
     return (
-        <Link to={`/chat/chatId=${chatId}`}>
+        <Link to={`/chat/chatId=${chatId}/name=${encodeURIComponent(name)}`}>
             <div className="chat">
                 <Avatar className="chat__image" src={profilePic} />
                 <div className="chat__details">

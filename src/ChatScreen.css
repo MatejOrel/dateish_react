@@ -4,6 +4,11 @@
     padding: 20px;
 }
 
+.chatScreen__name {
+    display: inline-flex;
+    font-weight: bold;
+}
+
 .chatScreen__text {
     margin-left: 10px;
     background-color: lightgray;

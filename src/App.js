@@ -28,7 +28,7 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/chat/chatId=:chatId">
+          <Route path="/chat/chatId=:chatId/name=:name">
             <Header backButton="/chat" />
             <ChatScreen />
           </Route>
@@ -52,7 +52,6 @@ function App() {
               <div>
                 <Header />
                 <TinderCards />
-                <SwipeButtons />
               </div>
             ) : (
               <Login />

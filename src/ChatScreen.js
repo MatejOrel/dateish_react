@@ -2,20 +2,24 @@ import { Avatar } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import { firebaseApp } from "./firebase";
 import "./ChatScreen.css";
+import { matchPath } from "react-router-dom";
 
 function ChatScreen() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [user, setUser] = useState();
-  const chatId = window.location.href.split("chatId=")[1];
+  const [name, setName] = useState();
+  const [image, setImage] = useState();
+  const chatId = window.location.href.split("chatId=")[1].split("/name=")[0];
   var firstTime = true;
 
   useEffect(() => {
     //console.log(chatId);
-
+    
     firebaseApp.auth().onAuthStateChanged(async (user) => {
       if (user) {
         setUser(user);
+        setName(decodeURIComponent(window.location.href.split("name=")[1]));
         fetch("https://dateishapi.herokuapp.com/api/chat?id=" + chatId, {
           method: "GET",
         })
@@ -23,23 +27,25 @@ function ChatScreen() {
           .then((chats) => {
             Object.values(chats).forEach((val) => {
               Object.keys(val).forEach((uid) => {
-                firebaseApp
-                  .database()
-                  .ref("Users/" + uid + "/profileImageUrl/")
-                  .once("value")
-                  .then((snapshot) => {
-                    console.log(snapshot.val());
-                    setMessages((messages) => [
-                      ...messages,
-                      { name: uid, image: snapshot.val(), message: val[uid] },
-                    ]);
-                  });
+          
+                  firebaseApp
+                    .database()
+                    .ref("Users/" + uid)
+                    .once("value")
+                    .then((snapshot) => {
+                      setImage(snapshot.child("profileImageUrl").val());
+                    });
+                
+                setMessages((messages) => [
+                  ...messages,
+                  { name: uid, message: val[uid] },
+                ]);
               });
             });
           })
           .catch((error) => console.log("failed", error.message));
 
-        /*var childData;
+        var childData;
         var onDataChange = firebaseApp
           .database()
           .ref("Chat/" + chatId)
@@ -48,7 +54,6 @@ function ChatScreen() {
             if (!firstTime) {
               snapshot.forEach(function (childSnapshot) {
                 childData = childSnapshot.val();
-                console.log(childData.text, childSnapshot);
               });
               setMessages((messages) => [
                 ...messages,
@@ -57,7 +62,7 @@ function ChatScreen() {
             } else {
               firstTime = false;
             }
-          });*/
+          });
       }
     });
   }, []);
@@ -76,13 +81,14 @@ function ChatScreen() {
 
   return (
     <div className="chatScreen">
+      <p className="chatScreen__timestamp">YOU MATCHED WITH <div className="chatScreen__name">{name}</div></p>
       {messages.map((message) =>
         message.name !== user.uid ? (
           <div className="chatScreen__message">
             <Avatar
               className="chatScreen__image"
               alt={message.name}
-              src={message.image}
+              src={image}
             />
             <p className="chatScreen__text">{message.message}</p>
           </div>

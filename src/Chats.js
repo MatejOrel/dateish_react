@@ -18,7 +18,6 @@ function Chats() {
             Object.keys(users).forEach((uid) => {
               arr.push({ uid, ...users[uid] });
             });
-            console.log(arr);
             setMatches(arr);
           })
           .catch((error) => console.log("failed", error.message));
