@@ -2,7 +2,6 @@ import { Avatar } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import { firebaseApp } from "./firebase";
 import "./ChatScreen.css";
-import { matchPath } from "react-router-dom";
 
 function ChatScreen() {
   const [input, setInput] = useState("");
@@ -10,14 +9,16 @@ function ChatScreen() {
   const [user, setUser] = useState();
   const [name, setName] = useState();
   const [image, setImage] = useState();
-  const chatId = window.location.href.split("chatId=")[1].split("/name=")[0];
-  var firstTime = true;
 
   useEffect(() => {
     //console.log(chatId);
-    
+
     firebaseApp.auth().onAuthStateChanged(async (user) => {
+      const chatId = window.location.href
+        .split("chatId=")[1]
+        .split("/name=")[0];
       if (user) {
+        var firstTime = true;
         setUser(user);
         setName(decodeURIComponent(window.location.href.split("name=")[1]));
         fetch("https://dateishapi.herokuapp.com/api/chat?id=" + chatId, {
@@ -27,15 +28,14 @@ function ChatScreen() {
           .then((chats) => {
             Object.values(chats).forEach((val) => {
               Object.keys(val).forEach((uid) => {
-          
-                  firebaseApp
-                    .database()
-                    .ref("Users/" + uid)
-                    .once("value")
-                    .then((snapshot) => {
-                      setImage(snapshot.child("profileImageUrl").val());
-                    });
-                
+                firebaseApp
+                  .database()
+                  .ref("Users/" + uid)
+                  .once("value")
+                  .then((snapshot) => {
+                    setImage(snapshot.child("profileImageUrl").val());
+                  });
+
                 setMessages((messages) => [
                   ...messages,
                   { name: uid, message: val[uid] },
@@ -46,7 +46,7 @@ function ChatScreen() {
           .catch((error) => console.log("failed", error.message));
 
         var childData;
-        var onDataChange = firebaseApp
+        firebaseApp
           .database()
           .ref("Chat/" + chatId)
           .limitToLast(1)
@@ -69,6 +69,7 @@ function ChatScreen() {
 
   const handleSend = (e) => {
     e.preventDefault();
+    const chatId = window.location.href.split("chatId=")[1].split("/name=")[0];
 
     firebaseApp
       .database()
@@ -81,7 +82,9 @@ function ChatScreen() {
 
   return (
     <div className="chatScreen">
-      <p className="chatScreen__timestamp">YOU MATCHED WITH <div className="chatScreen__name">{name}</div></p>
+      <div className="chatScreen__timestamp">
+        YOU MATCHED WITH <p className="chatScreen__name">{name}</p>
+      </div>
       {messages.map((message) =>
         message.name !== user.uid ? (
           <div className="chatScreen__message">

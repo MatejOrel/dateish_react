@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "dateish-clone"
+    "default": "dateish-5d381",
+    "hosting": "dateish-5d381"
   }
 }

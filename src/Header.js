@@ -45,6 +45,7 @@ function Header({ backButton }) {
               .auth()
               .signOut()
               .then(() => {
+                window.location.href = "/";
                 // Sign-out successful.
               })
               .catch((error) => {

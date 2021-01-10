@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Login from "./Login.js";
 import Header from "./Header.js";
 import TinderCards from "./TinderCards";
-import SwipeButtons from "./SwipeButtons";
 import Chats from "./Chats";
 import ChatScreen from "./ChatScreen";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
