@@ -84,9 +84,7 @@ function TinderCards() {
           ))}
         </div>
       ) : (
-        <div className="loading">
-          Loading...
-        </div>
+        <div className="loading">Loading...</div>
       )}
     </div>
   );
