@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
@@ -18,6 +18,21 @@ export default function Register() {
     sex: "",
     date: "",
   });
+
+  const [lokacija2, setLocation2] = useState();
+
+  const [lokacija, setLocation] = useState();
+
+  function onSuccess(location) {
+    setLocation(location.coords.latitude);
+    setLocation2(location.coords.longitude);
+  }
+
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(onSuccess);
+    }
+  }, []);
 
   function validateForm() {
     console.log(fields.sex, fields.name, fields.surname, fields.date);
@@ -50,6 +65,8 @@ export default function Register() {
             sex: fields.sex,
             uID: user.user.uid,
             date: fields.date,
+            latitude: lokacija,
+            longtitude: lokacija2,
           }),
         }).then(() => {
           window.location.href = "/";
