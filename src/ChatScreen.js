@@ -7,10 +7,12 @@ function ChatScreen() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [user, setUser] = useState();
+  const chatId = window.location.href.split("chatId=")[1];
+  var firstTime = true;
 
   useEffect(() => {
     //console.log(chatId);
-    const chatId = window.location.href.split("chatId=")[1];
+
     firebaseApp.auth().onAuthStateChanged(async (user) => {
       if (user) {
         setUser(user);
@@ -19,20 +21,43 @@ function ChatScreen() {
         })
           .then((resp) => resp.json())
           .then((chats) => {
-            var it = 0;
             Object.values(chats).forEach((val) => {
               Object.keys(val).forEach((uid) => {
-                setMessages((messages) => [
-                  ...messages,
-                  { id: it, name: uid, message: val[uid] },
-                ]);
-                console.log(uid);
-                it++;
+                firebaseApp
+                  .database()
+                  .ref("Users/" + uid + "/profileImageUrl/")
+                  .once("value")
+                  .then((snapshot) => {
+                    console.log(snapshot.val());
+                    setMessages((messages) => [
+                      ...messages,
+                      { name: uid, image: snapshot.val(), message: val[uid] },
+                    ]);
+                  });
               });
             });
-            console.log(messages);
           })
           .catch((error) => console.log("failed", error.message));
+
+        /*var childData;
+        var onDataChange = firebaseApp
+          .database()
+          .ref("Chat/" + chatId)
+          .limitToLast(1)
+          .on("value", function (snapshot) {
+            if (!firstTime) {
+              snapshot.forEach(function (childSnapshot) {
+                childData = childSnapshot.val();
+                console.log(childData.text, childSnapshot);
+              });
+              setMessages((messages) => [
+                ...messages,
+                { name: childData.createdByUser, message: childData.text },
+              ]);
+            } else {
+              firstTime = false;
+            }
+          });*/
       }
     });
   }, []);
@@ -40,7 +65,6 @@ function ChatScreen() {
   const handleSend = (e) => {
     e.preventDefault();
 
-    const chatId = window.location.href.split("chatId=")[1];
     firebaseApp
       .database()
       .ref("Chat/" + chatId)
@@ -52,9 +76,6 @@ function ChatScreen() {
 
   return (
     <div className="chatScreen">
-      <p className="chatScreen__timestamp">
-        YOU MATCHED WITH THIS GUY ON THIS DATE
-      </p>
       {messages.map((message) =>
         message.name !== user.uid ? (
           <div className="chatScreen__message">
