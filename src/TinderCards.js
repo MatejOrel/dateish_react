@@ -83,12 +83,10 @@ function TinderCards() {
               <div
                 style={{ backgroundImage: `url(${person.profileImageUrl})` }}
                 className="card"
-              ></div>
-              <div>
+              >
                 <h3>
                   {person.name}, {age(person.dateOfBirth)}
                 </h3>
-                <p className="bio">{person.bio}</p>
               </div>
             </TinderCard>
           ))}
