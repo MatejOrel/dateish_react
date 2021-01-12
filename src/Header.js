@@ -33,7 +33,7 @@ function Header({ backButton }) {
       <Link to="/">
         <img
           className="header__logo"
-          src="https://1000logos.net/wp-content/uploads/2018/07/tinder-logo.png"
+          src="https://firebasestorage.googleapis.com/v0/b/dateish-5d381.appspot.com/o/logo.png?alt=media&token=0bc84514-df61-4045-8737-a17ff18ae3c6"
           alt="tinder logo"
         />
       </Link>

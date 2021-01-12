@@ -63,6 +63,12 @@ function TinderCards() {
     });
   };
 
+  const age = (birth) => {
+    const ageDifMs = Date.now() - new Date(birth);
+    const ageDate = new Date(ageDifMs);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  };
+
   return (
     <div>
       {users ? (
@@ -77,8 +83,12 @@ function TinderCards() {
               <div
                 style={{ backgroundImage: `url(${person.profileImageUrl})` }}
                 className="card"
-              >
-                <h3>{person.name}</h3>
+              ></div>
+              <div>
+                <h3>
+                  {person.name}, {age(person.dateOfBirth)}
+                </h3>
+                <p className="bio">{person.bio}</p>
               </div>
             </TinderCard>
           ))}
