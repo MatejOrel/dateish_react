@@ -22,4 +22,4 @@ Predvidene entitete:
 
 Uporabniki (moški/ženske) so med seboj vsi enakovredni, le te pa imajo v podatkovni bazi shranjen svoj opis, telefonsko številko v kolikor jo želijo deliti, osebne podatke ter fotografije.
 
-Delo sva si delila tako, da je eden delal na frontendu drugi pa na backendu
+Delo sva si delila tako, da je eden delal na frontendu drugi pa na backendu 
