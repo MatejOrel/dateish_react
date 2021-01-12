@@ -21,3 +21,5 @@ Predvidevava, da bo najina aplikacija vsebovala naslednje funkcionalnosti:
 Predvidene entitete:
 
 Uporabniki (moški/ženske) so med seboj vsi enakovredni, le te pa imajo v podatkovni bazi shranjen svoj opis, telefonsko številko v kolikor jo želijo deliti, osebne podatke ter fotografije.
+
+![Alt text](C:\Users\anzeo\Downloads\choose.jps?raw=true "Choose")
