@@ -26,3 +26,5 @@ Uporabniki (moški/ženske) so med seboj vsi enakovredni, le te pa imajo v podat
 ![Alt text](https://firebasestorage.googleapis.com/v0/b/dateish-5d381.appspot.com/o/main.jpg?alt=media&token=263bc5e7-f126-44b0-a1e5-3b5c2246d42d "Swiping on Android App")
 ![Alt text](https://firebasestorage.googleapis.com/v0/b/dateish-5d381.appspot.com/o/main_web.jpg?alt=media&token=7f62e9bd-8ae1-4e7f-b7ff-52fffb7fef2a "Swiping on Webapp")
 ![Alt text](https://firebasestorage.googleapis.com/v0/b/dateish-5d381.appspot.com/o/settings.jpg?alt=media&token=0ad3cb3d-1136-40dd-8a11-fe07e35cff1b "Settings on Webapp")
+
+Anže je delal backend, Matej pa frontend, sproti sva en drugemu pomagala in na koncu skupaj implementirala API v najino aplikacijo.
